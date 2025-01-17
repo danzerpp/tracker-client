@@ -196,7 +196,7 @@ async function getAnimals(){
               >
                <TextField
                   fullWidth
-                  label= 'Typ zwierzęcia'
+                  label= 'Zwierzę'
                   name="animalId"
                   onChange={handleChange}
                   required
@@ -208,7 +208,6 @@ async function getAnimals(){
                     <option
                       key={option.id}
                       value={option.id}
-                      losowo = {option.name}
                     >
                       {option.name}
                     </option>

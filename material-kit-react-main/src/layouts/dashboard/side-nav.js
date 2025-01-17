@@ -87,7 +87,7 @@ export const SideNav = (props) => {
       },
       {
         title: 'Wykresy - pods. typ zwierz.',
-        path: '/chartsType',
+        path: '/chartsSumType',
         icon: (
           <SvgIcon fontSize="small">
             <ChartBarSquareIcon />

@@ -118,6 +118,11 @@ async function goToAddForm()
   const columns = useMemo(
     () => [
       {
+        accessorKey: 'id', //access nested data with dot notation
+        header: 'ID',
+        size: 60,
+      },
+      {
         accessorKey: 'name', //access nested data with dot notation
         header: 'Nazwa trackera',
         size: 150,
