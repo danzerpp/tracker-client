@@ -1,0 +1,12 @@
+.changeLanguageBtn
+{
+    float: right;
+    background-color: lightgrey;
+    width: 66px;
+    border-radius: 25px;
+}
+
+.ingredients-span{
+    font-weight:bold;
+    font-size: 1.5rem;
+}
