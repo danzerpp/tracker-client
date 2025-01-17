@@ -6,7 +6,12 @@ import { useState, useEffect} from 'react';
 import { useTranslation }  from "react-i18next";
 
 import { Line } from 'react-chartjs-2';
-import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
+import { Bar } from 'react-chartjs-2';
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
+
+// Register necessary components for Chart.js
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+
 import axios from 'axios';
 
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
@@ -17,7 +22,6 @@ import "dayjs/locale/pl"; // Import języka polskiego
 import { display } from '@mui/system';
 
 // Register necessary Chart.js components
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 
 const now = new Date();
@@ -118,6 +122,7 @@ const Page = () =>{
 
   async function downloadPoints(){
 
+    try {
     const urlSummary = 'http://localhost:8080/api/geoReadSummary/getSummaryByAnimalId';
     const rawDataSummary = JSON.stringify({ 
       animalId: datesSearch.animalId,
@@ -137,57 +142,35 @@ const Page = () =>{
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    const result1 = await responseSummary.json();
-console.log('this is',result1)
+    const result = await responseSummary.json();
 
 
-    const url = 'http://localhost:8080/api/geoRead/getAllForAnimalId';
 
-      const rawData = JSON.stringify({ 
-        animalId: datesSearch.animalId,
-        startDate: datesSearch.start.format("YYYY-MM-DDTHH:mm:ss"),
-        endDate: datesSearch.end.format("YYYY-MM-DDTHH:mm:ss")
-      });
-
-      try {
-        const response = await fetch(url, {
-          method: 'POST', // Using GET
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: rawData, // Sending raw JSON data as the body
-        });
-
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const result = await response.json();
-        console.log('Response:', result);
-var data = result;
+   
+      
+        var data = result;
         const transformedData = {
-          labels: result.map(m=>m.createdDate.replace('T',' ')), // Array of months, e.g., ['January', 'February', ...]
+          labels: result.map(m=>m.date), // Array of months, e.g., ['January', 'February', ...]
           datasets: [
             {
-              label: 'Temperatura zwierzęcia',
-              data: result.map(m=>m.currentTemp), // Array of sales, e.g., [65, 59, 80, ...]
-              fill: false,
+              label: 'przebyty dystans [km]',
+              data: result.map(m=>m.distance), // Array of sales, e.g., [65, 59, 80, ...]
+              backgroundColor: 'rgb(243,236,219)',
+            },
+            {
+              label: 'czas spoczynku [min]',
+              data: result.map(m=>m.idleTime/60), // Array of sales, e.g., [65, 59, 80, ...]
               backgroundColor: 'rgb(0,128,0)',
-              borderColor: 'rgba(0,128,0, 0.2)',
             },
             {
-              label: 'Górna temperatura zwierzęcia',
-              data: result.map(m=>datesSearch.max), // Array of sales, e.g., [65, 59, 80, ...]
-              fill: false,
-              backgroundColor: 'rgb(255,165,0)',
-              borderColor: 'rgba(255,165,0, 0.2)',
+              label: 'Średnia temperatura zwierzęcia [°C]',
+              data: result.map(m=> m.tempAvg), // Array of sales, e.g., [65, 59, 80, ...]
+              backgroundColor: 'rgb(0,204,255)',
             },
             {
-              label: 'Dolna temperatura zwierzęcia',
-              data: result.map(m=>datesSearch.min), // Array of sales, e.g., [65, 59, 80, ...]
-              fill: false,
-              backgroundColor: 'rgb(255,215,0)',
-              borderColor: 'rgba(255,215,0, 0.2)',
+              label: 'Wyjścia poza pastuch',
+              data: result.map(m=>m.outOfShepherdCounter), // Array of sales, e.g., [65, 59, 80, ...]
+              backgroundColor: 'rgb(255,160,122)',
             }
           ],
         };
@@ -201,31 +184,24 @@ var data = result;
       }
   }
 
- 
   const options = {
     responsive: true,
-    maintainAscperRatio:false,
     plugins: {
-      legend: {
-        display: true,
-        position: 'top',
+      title: {
+        display: false,
+        text: 'Stacked Bar Chart Example',
       },
       tooltip: {
-        enabled: true,
+        mode: 'index',
+        intersect: false,
       },
     },
     scales: {
       x: {
-        title: {
-          display: true,
-          text: 'Dzień i godzina',
-        },
+        stacked: false, // Enable stacking on the x-axis
       },
       y: {
-        title: {
-          display: true,
-          text: 'Temperatura °C',
-        },
+        stacked: false, // Enable stacking on the y-axis
       },
     },
   };
@@ -301,9 +277,9 @@ var data = result;
 
     </LocalizationProvider>
     </div>
-      <h1>Wykres zmian temperatury </h1>
+      <h1>Wykres - statystyka dzienna </h1>
       <div>
-      {chartData ? <Line data={chartData} options={options} /> : <p>Loading...</p>}
+      {chartData ? <Bar data={chartData} options={options} />: <p>Loading...</p>}
       </div>
     </div>
     </Box>
