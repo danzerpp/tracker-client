@@ -22,6 +22,7 @@ import ShoppingBagIcon from '@heroicons/react/24/solid/ShoppingBagIcon';
 import ChartBarIcon from '@heroicons/react/24/solid/ChartBarIcon';
 import DevicePhoneMobileIcon from '@heroicons/react/24/solid/DevicePhoneMobileIcon';
 import ChartBarSquareIcon from '@heroicons/react/24/solid/ChartBarSquareIcon';
+import GlobeAltIcon from '@heroicons/react/24/solid/GlobeAltIcon';
 
 
 import { Logo } from 'src/components/logo';
@@ -67,6 +68,16 @@ export const SideNav = (props) => {
           </SvgIcon>
         )
       },
+      {
+        title: 'Cyfrowy pastuch',
+        path: '/animalShepherds',
+        icon: (
+          <SvgIcon fontSize="small">
+            <GlobeAltIcon />
+          </SvgIcon>
+        )
+      }
+      ,
       {
         title: 'Wykresy - zwierzę temp.',
         path: '/chartsAnimal',

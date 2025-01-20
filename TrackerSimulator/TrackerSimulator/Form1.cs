@@ -40,8 +40,8 @@ namespace TrackerSimulator
             // Create JSON payload
             var payload = new
             {
-                name = "value1",
-                type = "value2",
+                name = "hehe peirwszy zwierzak",
+                type = "COW",
                 tempMin = 30,
                 tempMax = 36
             };
