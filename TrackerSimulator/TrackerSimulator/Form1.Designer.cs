@@ -89,7 +89,7 @@
             lat.Name = "lat";
             lat.Size = new Size(186, 34);
             lat.TabIndex = 0;
-            lat.Text = "52.2297";
+            lat.Text = "52.89941";
             lat.TextChanged += lat_TextChanged;
             lat.KeyPress += lat_KeyPress;
             // 
@@ -120,7 +120,7 @@
             lon.Name = "lon";
             lon.Size = new Size(186, 34);
             lon.TabIndex = 2;
-            lon.Text = "21.0122";
+            lon.Text = "16.46148";
             lon.TextChanged += long_TextChanged;
             lon.KeyPress += lat_KeyPress;
             // 
@@ -198,7 +198,7 @@
             // 
             // dateStartDelayed
             // 
-            dateStartDelayed.CustomFormat = "dd.MM.yyyy hh:mm:ss";
+            dateStartDelayed.CustomFormat = "dd.MM.yyyy HH:mm:ss";
             dateStartDelayed.Font = new Font("Segoe UI", 12F);
             dateStartDelayed.Format = DateTimePickerFormat.Custom;
             dateStartDelayed.Location = new Point(124, 191);
@@ -254,7 +254,7 @@
             // 
             // dateOnePoint
             // 
-            dateOnePoint.CustomFormat = "dd.MM.yyyy hh:mm:ss";
+            dateOnePoint.CustomFormat = "dd.MM.yyyy HH:mm:ss";
             dateOnePoint.Font = new Font("Segoe UI", 12F);
             dateOnePoint.Format = DateTimePickerFormat.Custom;
             dateOnePoint.Location = new Point(171, 88);
@@ -456,7 +456,7 @@
             // 
             // dateNow
             // 
-            dateNow.CustomFormat = "dd.MM.yyyy hh:mm:ss";
+            dateNow.CustomFormat = "dd.MM.yyyy HH:mm:ss";
             dateNow.Font = new Font("Segoe UI", 12F);
             dateNow.Format = DateTimePickerFormat.Custom;
             dateNow.Location = new Point(124, 188);

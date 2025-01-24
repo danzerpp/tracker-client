@@ -40,7 +40,7 @@ namespace TrackerSimulator
             // Create JSON payload
             var payload = new
             {
-                name = "hehe peirwszy zwierzak",
+                name = "Krówka od testowania",
                 type = "COW",
                 tempMin = 30,
                 tempMax = 36
@@ -81,7 +81,7 @@ namespace TrackerSimulator
             var payload = new
             {
                 animalId = 1,
-                name = "TestTrakcer"
+                name = "Tracker dla  Krówki"
 
             };
 
@@ -231,7 +231,7 @@ namespace TrackerSimulator
             _tempToSend = _tempMin + (randomValue * (_tempMax - _tempMin));
             var random = new Random();
             MovementSimulator simulator = new MovementSimulator();
-           (_lat,_lon) =  simulator.SimulateMove(_lat,_lon, random.Next(0, 1 + _kmPerHour));
+           (_lat,_lon) =  simulator.SimulateMove(_lat,_lon, random.Next(0, 1 + _kmPerHour), _timeBetweenSimulations*1000);
 
             SendPointToApi(true);
         }
@@ -349,7 +349,7 @@ namespace TrackerSimulator
                 _tempToSend = _tempMin + (randomValue * (_tempMax - _tempMin));
 
                 MovementSimulator simulator = new MovementSimulator();
-                (_lat, _lon) = simulator.SimulateMove(_lat, _lon, random.Next(0,1+_kmPerHour));
+                (_lat, _lon) = simulator.SimulateMove(_lat, _lon, random.Next(0,1+_kmPerHour), _timeBetweenSimulations*1000);
             }
 
           
@@ -562,7 +562,7 @@ namespace TrackerSimulator
             }
 
             // Allow one decimal point
-            if (e.KeyChar == '.' && !lat.Text.Contains("."))
+            if (e.KeyChar == '.' && !txt.Text.Contains("."))
             {
                 return;
             }

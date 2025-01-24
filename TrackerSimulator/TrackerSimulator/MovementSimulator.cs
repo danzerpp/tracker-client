@@ -9,11 +9,10 @@ namespace TrackerSimulator
     public class MovementSimulator
     {
 
-        public (double latitude, double longitude) SimulateMove(double latitude, double longitude, double speedKmH)
+        public (double latitude, double longitude) SimulateMove(double latitude, double longitude, double speedKmH, int intervalMs)
         {
 
             // Parametry symulacji
-            int intervalMs = 1000; // Interwał czasu (1 sekunda)
 
             // Inicjalizacja generatora losowego
             Random random = new Random();
@@ -42,7 +41,7 @@ namespace TrackerSimulator
                 Console.WriteLine("Symulacja ruchu zwierzęcia");
                 Console.WriteLine($"Aktualne współrzędne: {latitude:F6}, {longitude:F6}");
 
-                return(latitude, longitude);
+                return(Math.Round(latitude,6), Math.Round(longitude, 6));
         }
     }
 }

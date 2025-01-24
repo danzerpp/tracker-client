@@ -23,6 +23,7 @@ import ChartBarIcon from '@heroicons/react/24/solid/ChartBarIcon';
 import DevicePhoneMobileIcon from '@heroicons/react/24/solid/DevicePhoneMobileIcon';
 import ChartBarSquareIcon from '@heroicons/react/24/solid/ChartBarSquareIcon';
 import GlobeAltIcon from '@heroicons/react/24/solid/GlobeAltIcon';
+import MapIcon from '@heroicons/react/24/solid/MapIcon';
 
 
 import { Logo } from 'src/components/logo';
@@ -74,6 +75,25 @@ export const SideNav = (props) => {
         icon: (
           <SvgIcon fontSize="small">
             <GlobeAltIcon />
+          </SvgIcon>
+        )
+      }
+      ,
+      {
+        title: 'Mapa - widok aktualny 12h',
+        path: '/mapActual',
+        icon: (
+          <SvgIcon fontSize="small">
+            <MapIcon />
+          </SvgIcon>
+        )
+      },
+      {
+        title: 'Mapa - przedział dat',
+        path: '/mapActualDates',
+        icon: (
+          <SvgIcon fontSize="small">
+            <MapIcon />
           </SvgIcon>
         )
       }
